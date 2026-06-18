@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessena Rose | ECE Engineer | IoT & Embedded Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #7c3aed;
+    --accent-light: #ede9fe;
+    --accent-mid: #a78bfa;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --coral: #e11d48;
+    --coral-light: #ffe4e6;
+    --bg: #f8f7ff;
+    --surface: #ffffff;
+    --text: #1e1b4b;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-shadow: 0 1px 3px rgba(124,58,237,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+    z-index: 100; padding: 0 2rem;
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--accent); letter-spacing: -0.5px; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 600px; margin-bottom: 3rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative; overflow: hidden; padding-top: 60px;
+  }
+  #hero::before {
+    content: ''; position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 70%);
+    top: -100px; right: -100px; border-radius: 50%;
+  }
+  #hero::after {
+    content: ''; position: absolute; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(13,148,136,0.2) 0%, transparent 70%);
+    bottom: -50px; left: 10%; border-radius: 50%;
+  }
+  .hero-inner { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block; background: rgba(124,58,237,0.2); border: 1px solid rgba(167,139,250,0.3);
+    color: var(--accent-mid); font-size: 0.8rem; font-weight: 500; padding: 6px 14px;
+    border-radius: 100px; margin-bottom: 1.5rem; letter-spacing: 0.05em;
+  }
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--accent-mid); }
+  .hero-tagline { font-size: 1.15rem; color: rgba(255,255,255,0.7); max-width: 560px; margin-bottom: 0.75rem; line-height: 1.7; }
+  .hero-obj { font-size: 0.95rem; color: rgba(255,255,255,0.5); max-width: 560px; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    border: 2px solid var(--accent);
+  }
+  .btn-primary:hover { background: #6d28d9; border-color: #6d28d9; transform: translateY(-1px); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.3); color: #fff; padding: 12px 24px;
+    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent-mid); color: var(--accent-mid); }
+  .hero-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .chip {
+    font-size: 0.78rem; font-weight: 500; padding: 5px 12px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-visual {
+    background: linear-gradient(135deg, var(--accent-light), var(--teal-light));
+    border-radius: 20px; padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+  .about-text p:first-child { font-size: 1.05rem; color: var(--text); }
+  .strength-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .strength-tag {
+    font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 100px;
+    background: var(--accent-light); color: var(--accent); border: 1px solid rgba(124,58,237,0.2);
+  }
+
+  /* EDUCATION */
+  #education { background: var(--bg); }
+  .edu-card {
+    background: var(--surface); border-radius: 12px; border: 1px solid var(--border);
+    padding: 2rem; margin-bottom: 1.5rem; display: flex; gap: 1.5rem; align-items: flex-start;
+    box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .edu-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(124,58,237,0.1); }
+  .edu-icon {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem;
+  }
+  .edu-info h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
+  .edu-info .inst { color: var(--muted); font-size: 0.9rem; margin-bottom: 6px; }
+  .edu-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 8px; }
+  .badge {
+    font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+  }
+  .badge-green { background: var(--teal-light); color: var(--teal); }
+  .badge-purple { background: var(--accent-light); color: var(--accent); }
+  .badge-gray { background: #f3f4f6; color: var(--muted); }
+
+  /* SKILLS */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-category {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; box-shadow: var(--card-shadow);
+  }
+  .skill-category-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .skill-icon { font-size: 1.2rem; }
+  .skill-category h3 { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-pill {
+    font-size: 0.78rem; padding: 4px 12px; border-radius: 100px; font-weight: 500;
+    background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+    transition: all 0.2s;
+  }
+  .skill-pill:hover { background: var(--accent-light); border-color: rgba(124,58,237,0.3); color: var(--accent); }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--bg); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .cert-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(124,58,237,0.12); }
+  .cert-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .cert-card.purple::before { background: var(--accent); }
+  .cert-card.teal::before { background: var(--teal); }
+  .cert-card.coral::before { background: var(--coral); }
+  .cert-org { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 6px; }
+  .cert-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .cert-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+  .cert-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .cert-tag { font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+
+  /* CODING */
+  #coding { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+  #coding .section-label { color: var(--accent-mid); }
+  #coding .section-title { color: #fff; }
+  #coding .section-sub { color: rgba(255,255,255,0.6); }
+  .coding-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .coding-stat-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 2rem; text-align: center;
+  }
+  .coding-num { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: var(--accent-mid); }
+  .coding-label { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 4px; }
+  .coding-features { display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+  .coding-feature { display: flex; align-items: flex-start; gap: 12px; }
+  .coding-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-mid); flex-shrink: 0; margin-top: 6px; }
+  .coding-feature p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+  /* PROJECTS */
+  #projects { background: var(--surface); }
+  .project-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; margin-bottom: 2rem; box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124,58,237,0.12); }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+  .project-title-area h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .project-type { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag {
+    font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; font-weight: 500;
+    background: var(--accent-light); color: var(--accent); border: 1px solid rgba(124,58,237,0.2);
+  }
+  .project-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin: 1rem 0; }
+  .project-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+  .feature-item { display: flex; align-items: flex-start; gap: 8px; }
+  .feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 8px; }
+  .feature-item p { font-size: 0.85rem; color: var(--muted); }
+  .impact-bar {
+    margin-top: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px;
+    border-left: 3px solid var(--accent); font-size: 0.85rem; color: var(--text);
+  }
+  .impact-bar strong { color: var(--accent); }
+
+  /* INTERNSHIP */
+  #internship { background: var(--bg); }
+  .intern-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--card-shadow);
+    display: flex; gap: 1.5rem;
+  }
+  .intern-timeline { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .intern-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .intern-line { width: 2px; flex: 1; background: var(--border); margin-top: 4px; }
+  .intern-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+  .intern-meta { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; }
+  .intern-info ul { padding-left: 1.2rem; }
+  .intern-info ul li { font-size: 0.9rem; color: var(--muted); margin-bottom: 6px; line-height: 1.6; }
+
+  /* ACHIEVEMENTS */
+  #achievements { background: var(--surface); }
+  .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .ach-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; box-shadow: var(--card-shadow); transition: transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .ach-card:hover { transform: translateY(-2px); }
+  .ach-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .ach-card h3 { font-weight: 600; font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+  .ach-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .ach-card.gold { border-top: 3px solid #f59e0b; }
+  .ach-card.silver { border-top: 3px solid #9ca3af; }
+  .ach-card.purple-top { border-top: 3px solid var(--accent); }
+
+  /* WHY HIRE ME */
+  #why { background: linear-gradient(135deg, var(--accent-light) 0%, var(--teal-light) 100%); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .why-card {
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.5); border-radius: 12px;
+    padding: 1.5rem; text-align: center; box-shadow: var(--card-shadow);
+    transition: transform 0.2s;
+  }
+  .why-card:hover { transform: translateY(-3px); }
+  .why-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .why-card h3 { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; color: var(--text); }
+  .why-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* CONTACT */
+  #contact { background: #1a1a2e; }
+  #contact .section-label { color: var(--accent-mid); }
+  #contact .section-title { color: #fff; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 1rem; }
+  .contact-info p { color: rgba(255,255,255,0.6); margin-bottom: 2rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.7);
+    text-decoration: none; font-size: 0.9rem; transition: color 0.2s;
+    padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .contact-link:hover { color: var(--accent-mid); border-color: rgba(167,139,250,0.3); }
+  .contact-link-icon { font-size: 1.1rem; }
+  .contact-right { display: flex; flex-direction: column; gap: 1rem; }
+  .ready-box {
+    background: rgba(124,58,237,0.15); border: 1px solid rgba(167,139,250,0.3);
+    border-radius: 12px; padding: 2rem;
+  }
+  .ready-box h3 { font-family: 'Space Grotesk', sans-serif; color: #fff; font-size: 1.2rem; margin-bottom: 0.75rem; }
+  .ready-box p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+  .available-for { margin-top: 1.5rem; }
+  .available-for h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-mid); margin-bottom: 0.75rem; }
+  .role-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .role-tag {
+    font-size: 0.78rem; padding: 5px 12px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+  }
+
+  footer {
+    background: #0f0f1a; padding: 1.5rem 2rem; text-align: center;
+    color: rgba(255,255,255,0.3); font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid, .coding-grid, .contact-grid { grid-template-columns: 1fr; }
+    .project-features { grid-template-columns: 1fr; }
+    .hero-name { font-size: 2.2rem; }
+    section { padding: 3rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Jessena Rose</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag">🎓 B.Tech ECE (Honours in IoT) · CGPA 9.1/10</div>
+      <h1 class="hero-name">Jessena <span>Rose</span></h1>
+      <p class="hero-tagline">Embedded Systems & IoT Engineer bridging the gap between hardware intelligence and software innovation.</p>
+      <p class="hero-obj">Seeking opportunities in Embedded Systems, IoT Engineering, Electronics, and Technology Consulting — where I can turn circuit logic and code into real-world impact.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip">⚡ Embedded Systems</span>
+        <span class="chip">🌐 IoT Development</span>
+        <span class="chip">🤖 Computer Vision</span>
+        <span class="chip">🔧 MATLAB & Simulink</span>
+        <span class="chip">☁️ AWS Fundamentals</span>
+        <span class="chip">🏆 Hackathon Champion</span>
+        <span class="chip">📜 Patent Filed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Hardware meets Software,<br>Ideas become Solutions</h2>
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="stat-item">
+          <span class="stat-num">9.1</span>
+          <span class="stat-label">CGPA — Sri Manakula Vinayagar Engineering College</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100+</span>
+          <span class="stat-label">Coding problems solved on CodeChef</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">₹1L</span>
+          <span class="stat-label">Cash prize — 24-Hour Hackathon (1st Place)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Allied Patent Filed for engineering innovation</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>I'm an Electronics and Communication Engineering student specializing in IoT at Sri Manakula Vinayagar Engineering College, Puducherry, maintaining a strong 9.1 CGPA. I operate at the exciting intersection of embedded hardware and intelligent software — designing systems that are not just functional, but purposeful.</p>
+        <p>From building a non-invasive jaundice detection device using optical sensors and machine learning, to developing an AI-powered ammunition tracking system with computer vision — my projects are driven by a simple question: <em>how can technology genuinely help people?</em></p>
+        <p>I've earned recognition in multiple hackathons, filed a patent, and gained real-world exposure through internships in software development and industrial electronics. I bring analytical rigor, fast learning, and a builder's mindset to every challenge.</p>
+        <div class="strength-tags">
+          <span class="strength-tag">Embedded Systems</span>
+          <span class="strength-tag">IoT Development</span>
+          <span class="strength-tag">PCB & Electronics</span>
+          <span class="strength-tag">MATLAB</span>
+          <span class="strength-tag">Machine Learning</span>
+          <span class="strength-tag">Java & C</span>
+          <span class="strength-tag">Problem Solving</span>
+          <span class="strength-tag">SAP HCM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Academic Foundation</h2>
+    <p class="section-sub">A strong engineering foundation built through consistent academic excellence and hands-on learning.</p>
+
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-info">
+        <h3>B.Tech — Electronics &amp; Communication Engineering (Honours in IoT)</h3>
+        <div class="inst">Sri Manakula Vinayagar Engineering College, Puducherry · 2023 – 2027</div>
+        <p style="font-size:0.9rem;color:#6b7280;">Pursuing an Honours specialization in Internet of Things alongside core ECE curriculum, covering embedded systems, signal processing, VLSI design, and wireless communications.</p>
+        <div class="edu-badges">
+          <span class="badge badge-green">CGPA: 9.1 / 10.0</span>
+          <span class="badge badge-purple">IoT Honours</span>
+          <span class="badge badge-gray">Currently Pursuing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">📚</div>
+      <div class="edu-info">
+        <h3>Class XII — Higher Secondary Education</h3>
+        <div class="inst">Aditya Vidyashram Residential School · 2022 – 2023</div>
+        <div class="edu-badges">
+          <span class="badge badge-green">86%</span>
+          <span class="badge badge-gray">Science Stream</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">🏫</div>
+      <div class="edu-info">
+        <h3>Class X — Secondary School Certificate</h3>
+        <div class="inst">Aditya Vidyashram Residential School · 2020 – 2021</div>
+        <div class="edu-badges">
+          <span class="badge badge-green">90%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical Skills</p>
+    <h2 class="section-title">Technology Arsenal</h2>
+    <p class="section-sub">A multidisciplinary skill set spanning embedded hardware, intelligent software, and enterprise tools.</p>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">💻</span>
+          <h3>Programming Languages</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL (Basics)</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">🔌</span>
+          <h3>Embedded Systems & IoT</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Embedded Systems</span>
+          <span class="skill-pill">IoT Development</span>
+          <span class="skill-pill">MATLAB</span>
+          <span class="skill-pill">Simulink</span>
+          <span class="skill-pill">Microcontrollers</span>
+          <span class="skill-pill">Signal Processing</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">🤖</span>
+          <h3>AI & Data Analytics</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Machine Learning</span>
+          <span class="skill-pill">Computer Vision</span>
+          <span class="skill-pill">Object Detection</span>
+          <span class="skill-pill">ML Regression</span>
+          <span class="skill-pill">Generative AI</span>
+          <span class="skill-pill">Data Analytics</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">🛠️</span>
+          <h3>Software Tools & Cloud</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Git & GitHub</span>
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">AWS Fundamentals</span>
+          <span class="skill-pill">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">🏢</span>
+          <h3>SAP & Business Systems</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">SAP HCM</span>
+          <span class="skill-pill">ERP Concepts</span>
+          <span class="skill-pill">SAP S/4HANA</span>
+          <span class="skill-pill">Business Process</span>
+          <span class="skill-pill">Business Analysis</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-header">
+          <span class="skill-icon">⚙️</span>
+          <h3>Developer Practices</h3>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Agile Methodology</span>
+          <span class="skill-pill">SDLC</span>
+          <span class="skill-pill">OOP & Design Patterns</span>
+          <span class="skill-pill">Unit Testing</span>
+          <span class="skill-pill">Debugging</span>
+          <span class="skill-pill">CCNA Basics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Certifications</p>
+    <h2 class="section-title">Continuous Learning</h2>
+    <p class="section-sub">Industry-recognized certifications validating expertise across engineering, technology, and enterprise domains.</p>
+    <div class="cert-grid">
+      <div class="cert-card purple">
+        <div class="cert-org">SAP</div>
+        <h3>SAP Human Capital Management (HCM)</h3>
+        <p>Mastery of HR technology, workforce analytics, personnel administration, and enterprise resource planning concepts aligned with SAP S/4HANA.</p>
+        <div class="cert-tags"><span class="cert-tag">HR Tech</span><span class="cert-tag">ERP</span><span class="cert-tag">SAP S/4HANA</span></div>
+      </div>
+      <div class="cert-card teal">
+        <div class="cert-org">NPTEL</div>
+        <h3>Internet of Things</h3>
+        <p>Comprehensive study of IoT architecture, protocols, sensor integration, and connected system design — directly applicable to smart systems and embedded projects.</p>
+        <div class="cert-tags"><span class="cert-tag">IoT</span><span class="cert-tag">Sensors</span><span class="cert-tag">NPTEL</span></div>
+      </div>
+      <div class="cert-card coral">
+        <div class="cert-org">NPTEL</div>
+        <h3>Fundamentals of Electronic Devices</h3>
+        <p>Deep understanding of semiconductor physics, transistor operation, diodes, and device-level electronics forming the backbone of hardware design.</p>
+        <div class="cert-tags"><span class="cert-tag">Electronics</span><span class="cert-tag">Semiconductors</span><span class="cert-tag">NPTEL</span></div>
+      </div>
+      <div class="cert-card teal">
+        <div class="cert-org">NPTEL</div>
+        <h3>Introduction to Industry 4.0 & Industrial IoT</h3>
+        <p>Insight into smart manufacturing, cyber-physical systems, industrial automation, and the convergence of IT and operational technology in modern industry.</p>
+        <div class="cert-tags"><span class="cert-tag">Industry 4.0</span><span class="cert-tag">IIoT</span><span class="cert-tag">Automation</span></div>
+      </div>
+      <div class="cert-card purple">
+        <div class="cert-org">Programming</div>
+        <h3>C Programming Certification</h3>
+        <p>Proficiency in low-level systems programming, memory management, data structures, and embedded application development using the C language.</p>
+        <div class="cert-tags"><span class="cert-tag">C Language</span><span class="cert-tag">Systems Programming</span></div>
+      </div>
+      <div class="cert-card purple">
+        <div class="cert-org">Programming</div>
+        <h3>Java Programming Certification</h3>
+        <p>Validated expertise in object-oriented programming, Java application development, design patterns, and enterprise-grade software engineering practices.</p>
+        <div class="cert-tags"><span class="cert-tag">Java</span><span class="cert-tag">OOP</span><span class="cert-tag">Application Dev</span></div>
+      </div>
+      <div class="cert-card coral">
+        <div class="cert-org">Business</div>
+        <h3>Business Analysis & Process Management</h3>
+        <p>Skills in requirements elicitation, stakeholder analysis, business process modeling, and translating technical solutions into business outcomes.</p>
+        <div class="cert-tags"><span class="cert-tag">Business Analysis</span><span class="cert-tag">Process Design</span></div>
+      </div>
+      <div class="cert-card teal">
+        <div class="cert-org">Networking · Cloud</div>
+        <h3>CCNA Basics & AWS Fundamentals</h3>
+        <p>Foundation in networking protocols, IP addressing, subnetting, and core AWS cloud services — enabling cloud-connected embedded system design.</p>
+        <div class="cert-tags"><span class="cert-tag">CCNA</span><span class="cert-tag">AWS</span><span class="cert-tag">Cloud</span><span class="cert-tag">Networking</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODING -->
+<section id="coding">
+  <div class="container">
+    <p class="section-label">Problem Solving</p>
+    <h2 class="section-title">Competitive Programming</h2>
+    <p class="section-sub">Sharpening algorithmic thinking through consistent competitive coding practice.</p>
+    <div class="coding-grid">
+      <div>
+        <div class="coding-stat-card" style="margin-bottom:1.5rem;">
+          <div class="coding-num">100+</div>
+          <div class="coding-label">Problems solved on CodeChef</div>
+        </div>
+        <div class="coding-stat-card">
+          <div class="coding-num">∞</div>
+          <div class="coding-label">Commitment to continuous learning</div>
+        </div>
+      </div>
+      <div class="coding-features">
+        <div class="coding-feature">
+          <div class="coding-dot"></div>
+          <p>Consistent practice in data structures, algorithms, and logical reasoning to build problem-solving stamina</p>
+        </div>
+        <div class="coding-feature">
+          <div class="coding-dot"></div>
+          <p>Analytical approach to breaking down complex engineering challenges into structured, implementable solutions</p>
+        </div>
+        <div class="coding-feature">
+          <div class="coding-dot"></div>
+          <p>Proven under pressure — delivered functional solutions within 24-hour and 36-hour hackathon environments</p>
+        </div>
+        <div class="coding-feature">
+          <div class="coding-dot"></div>
+          <p>Coding skills directly applied to real-world projects including ML models, embedded firmware, and computer vision pipelines</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Engineering Solutions Built</h2>
+    <p class="section-sub">Projects that solve real problems — from healthcare to security to wildlife conservation.</p>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-area">
+          <div class="project-type">⭐ Featured · Wildlife & Conservation</div>
+          <h3>Wireless Elephant Detection & Intrusion Alert System</h3>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">IoT</span>
+          <span class="tech-tag">Wireless Sensors</span>
+          <span class="tech-tag">Embedded Systems</span>
+          <span class="tech-tag">Alert Systems</span>
+        </div>
+      </div>
+      <p class="project-desc">Human-elephant conflict is a serious issue across forest-bordering communities. This system provides a low-cost, wireless early-warning network that detects elephant intrusions near farmland and human settlements, triggering automated alerts before conflict escalates.</p>
+      <div class="project-features">
+        <div class="feature-item"><div class="feature-dot"></div><p>Real-time wireless intrusion detection using distributed sensor nodes</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Automated multi-channel alert system for farmers and rangers</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Low-power IoT architecture for remote deployment</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Scalable sensor grid adaptable to different terrain types</p></div>
+      </div>
+      <div class="impact-bar"><strong>Impact:</strong> Protects farming communities and wildlife alike — reducing retaliatory killings and crop loss through technology-driven early warning.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-area">
+          <div class="project-type">⭐ Featured · Innovation · Patent-Pending Area</div>
+          <h3>VibroSilence: Anti-Vibration Noise Reduction for Household Mixers</h3>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Piezoelectric Sensors</span>
+          <span class="tech-tag">Signal Processing</span>
+          <span class="tech-tag">Embedded Control</span>
+          <span class="tech-tag">Product Design</span>
+        </div>
+      </div>
+      <p class="project-desc">Household mixers generate significant vibration-induced noise — a daily nuisance in millions of homes. VibroSilence applies active piezoelectric vibration damping to neutralize the mechanical vibrations at the source, drastically reducing noise output without altering performance.</p>
+      <div class="project-features">
+        <div class="feature-item"><div class="feature-dot"></div><p>Piezoelectric transducer array captures and counters vibration signatures</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Embedded control logic for real-time vibration frequency analysis</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Non-invasive design — retrofittable to existing appliances</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Significant noise reduction without mechanical redesign</p></div>
+      </div>
+      <div class="impact-bar"><strong>Innovation:</strong> Bridges consumer electronics and active noise control engineering — a commercially viable product concept addressing everyday quality-of-life.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-area">
+          <div class="project-type">AI · Security & Defense</div>
+          <h3>AI-Based Ammunition Tracking System</h3>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Computer Vision</span>
+          <span class="tech-tag">Object Detection</span>
+          <span class="tech-tag">AI/ML</span>
+          <span class="tech-tag">Image Processing</span>
+        </div>
+      </div>
+      <p class="project-desc">Manual ammunition inventory management in secure facilities is error-prone and slow. This AI system automates real-time detection, tracking, and logging of ammunition movement using computer vision — improving accountability and reducing human recording errors.</p>
+      <div class="project-features">
+        <div class="feature-item"><div class="feature-dot"></div><p>Real-time object detection for ammunition identification and tracking</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Automated movement logging with timestamp and location data</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Improved traceability in high-security storage environments</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Reliability-focused implementation with error-minimizing architecture</p></div>
+      </div>
+      <div class="impact-bar"><strong>Impact:</strong> Eliminates manual recording bottlenecks and enhances security audit trails in sensitive inventory management.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-area">
+          <div class="project-type">Assistive Technology · Social Impact</div>
+          <h3>Interactive Learning Toy for Children with Autism</h3>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Embedded Systems</span>
+          <span class="tech-tag">Sensors</span>
+          <span class="tech-tag">Computer Vision</span>
+          <span class="tech-tag">Accessibility Design</span>
+        </div>
+      </div>
+      <p class="project-desc">Designed to support early learning and therapeutic engagement for children with Autism Spectrum Disorder. The device uses embedded sensors, audio prompts, and adaptive multi-sensory interaction to create a responsive, engaging learning environment tailored to individual response patterns.</p>
+      <div class="project-features">
+        <div class="feature-item"><div class="feature-dot"></div><p>Adaptive audio-visual prompts responding to user interaction patterns</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Multi-sensory feedback loop supporting different learning modalities</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Accessible, child-safe hardware design with durable components</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>User-centric design informed by therapeutic engagement principles</p></div>
+      </div>
+      <div class="impact-bar"><strong>Impact:</strong> Technology as a bridge — making early therapeutic intervention more accessible and engaging for children who need it most.</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-area">
+          <div class="project-type">Healthcare Technology · Machine Learning</div>
+          <h3>Non-Invasive Jaundice Detection Device</h3>
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Optical Sensors</span>
+          <span class="tech-tag">Microcontroller</span>
+          <span class="tech-tag">ML Regression</span>
+          <span class="tech-tag">Healthcare IoT</span>
+        </div>
+      </div>
+      <p class="project-desc">Jaundice screening in resource-limited healthcare settings typically requires invasive blood tests. This device uses optical sensors and a machine learning regression model to estimate bilirubin levels non-invasively — enabling faster, cheaper, and pain-free early detection, especially for neonates.</p>
+      <div class="project-features">
+        <div class="feature-item"><div class="feature-dot"></div><p>Optical bilirubin estimation without blood sampling</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>ML regression model trained for accuracy across diverse skin tones</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Low-cost hardware design suitable for rural and community health</p></div>
+        <div class="feature-item"><div class="feature-dot"></div><p>Reduces dependency on laboratory infrastructure for early screening</p></div>
+      </div>
+      <div class="impact-bar"><strong>Impact:</strong> Democratizes early jaundice detection — potentially saving neonatal lives in settings where lab testing is unavailable or unaffordable.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIP -->
+<section id="internship">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Industry Exposure</h2>
+    <p class="section-sub">Hands-on professional experience in both software development and industrial electronics environments.</p>
+
+    <div class="intern-card">
+      <div class="intern-timeline">
+        <div class="intern-dot"></div>
+        <div class="intern-line"></div>
+      </div>
+      <div class="intern-info">
+        <h3>Java Developer Intern</h3>
+        <div class="intern-meta">Codec Technologies · 1 Month</div>
+        <ul>
+          <li>Developed and tested Java application modules using OOP principles, design patterns, and systematic debugging within an Agile development workflow — building end-to-end SDLC understanding.</li>
+          <li>Contributed to a complete mini-project lifecycle covering requirement gathering, implementation, unit testing, and iterative debugging in a professional cross-functional team environment.</li>
+          <li>Strengthened skills in software architecture, code quality practices, and collaborative development methodologies used in enterprise environments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="intern-card">
+      <div class="intern-timeline">
+        <div class="intern-dot"></div>
+      </div>
+      <div class="intern-info">
+        <h3>Engineering Intern</h3>
+        <div class="intern-meta">Brite Brothers Ltd, Puducherry · 2 Weeks</div>
+        <ul>
+          <li>Gained firsthand exposure to industrial electronics, process monitoring systems, equipment maintenance procedures, and quality assurance practices in a manufacturing environment.</li>
+          <li>Developed awareness of operational workflows, interdepartmental coordination, and the discipline required in process-oriented industrial settings.</li>
+          <li>Observed how engineering decisions translate into production floor realities — bridging academic knowledge with industry practice.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <p class="section-label">Achievements</p>
+    <h2 class="section-title">Recognition & Impact</h2>
+    <p class="section-sub">A track record of performing under pressure and delivering results that earn recognition.</p>
+    <div class="ach-grid">
+      <div class="ach-card gold">
+        <div class="ach-icon">🥇</div>
+        <h3>24-Hour Hackathon Champion</h3>
+        <p>Won first place with a cash prize of ₹1,00,000 — delivering a fully functional solution under extreme time constraints. Demonstrated rapid prototyping, teamwork, and engineering under pressure.</p>
+      </div>
+      <div class="ach-card silver">
+        <div class="ach-icon">🥈</div>
+        <h3>Second Place — 36-Hour Hackathon</h3>
+        <p>Secured second prize in an intense 36-hour hackathon, demonstrating sustained problem-solving ability, endurance, and the capacity to deliver working solutions in extended sprint formats.</p>
+      </div>
+      <div class="ach-card gold">
+        <div class="ach-icon">🏆</div>
+        <h3>Inter-College Paper Presentation Winner</h3>
+        <p>Won first prize in multiple inter-college paper presentation competitions, recognized for presenting innovative, research-oriented technology solutions with clarity and depth.</p>
+      </div>
+      <div class="ach-card purple-top">
+        <div class="ach-icon">📜</div>
+        <h3>Allied Patent Filed</h3>
+        <p>Filed an engineering patent for a technology innovation addressing a real-world problem — demonstrating originality, research depth, and the ability to create IP-worthy solutions.</p>
+      </div>
+      <div class="ach-card purple-top">
+        <div class="ach-icon">🎤</div>
+        <h3>Demosthenes Club Leadership</h3>
+        <p>Active member and organizer of the Demosthenes Club — facilitating group discussions and debates to build communication, critical thinking, and leadership skills in peers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HIRE ME -->
+<section id="why">
+  <div class="container">
+    <p class="section-label">Value Proposition</p>
+    <h2 class="section-title">Why Hire Jessena?</h2>
+    <p class="section-sub">For recruiters from Accenture, TCS, Cognizant, Infosys, Wipro, KaarTech, and embedded/IoT companies.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🔌</div>
+        <h3>Hardware-Software Bridge</h3>
+        <p>Rare ability to work across the full stack — from microcontroller firmware to ML models to enterprise ERP systems.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌐</div>
+        <h3>IoT Specialization</h3>
+        <p>Dedicated Honours track in IoT, backed by NPTEL certification and multiple sensor-based project implementations.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <h3>Proven Under Pressure</h3>
+        <p>Hackathon champion, patent filer, multi-competition winner — consistently delivers when stakes are high and timelines are tight.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤖</div>
+        <h3>AI-First Engineering Mindset</h3>
+        <p>Projects span computer vision, ML regression, and generative AI — bringing intelligence to embedded and IoT systems.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💡</div>
+        <h3>Social Impact Orientation</h3>
+        <p>Projects tackle real problems — healthcare access, wildlife conservation, assistive technology, and industrial efficiency.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📈</div>
+        <h3>Academic Excellence</h3>
+        <p>9.1 CGPA with 90% in Class X and 86% in Class XII — a consistent performer with deep conceptual foundations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Let's Build Something Together</h2>
+        <p>I'm actively seeking opportunities in embedded systems, IoT engineering, electronics design, software development, and technology consulting. Open to internships, full-time roles, and collaborative projects.</p>
+        <div class="contact-links">
+          <a href="mailto:jessenarose19@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉️</span>
+            <span>jessenarose19@gmail.com</span>
+          </a>
+          <a href="tel:+918489888399" class="contact-link">
+            <span class="contact-link-icon">📞</span>
+            <span>+91 8489888399</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jessena-rose-b0035a333" target="_blank" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            <span>linkedin.com/in/jessena-rose-b0035a333</span>
+          </a>
+          <a href="https://github.com/Jessena19" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🐙</span>
+            <span>github.com/Jessena19</span>
+          </a>
+          <a class="contact-link" style="cursor:default;">
+            <span class="contact-link-icon">📍</span>
+            <span>Puducherry, India</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="ready-box">
+          <h3>Ready to contribute from Day 1</h3>
+          <p>With hands-on project experience in embedded systems, computer vision, IoT, and enterprise tools, I bring both technical depth and the cross-domain adaptability that modern tech roles demand.</p>
+          <div class="available-for">
+            <h4>Open to roles in</h4>
+            <div class="role-tags">
+              <span class="role-tag">Embedded Systems Engineer</span>
+              <span class="role-tag">IoT Engineer</span>
+              <span class="role-tag">Electronics Engineer</span>
+              <span class="role-tag">Software Engineer</span>
+              <span class="role-tag">Technology Consulting</span>
+              <span class="role-tag">Data Analytics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Jessena Rose · ECE Student, Sri Manakula Vinayagar Engineering College · Puducherry, India · Batch 2023–2027</p>
+</footer>
+
+</body>
+</html>
